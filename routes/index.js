@@ -22,6 +22,10 @@ const updateAddToCartProduct = require("../controller/user/updateAddToCartProduc
 const deleteAddToCartProduct = require("../controller/user/deleteAddToCartProduct");
 const searchProduct = require("../controller/product/searchProduct");
 const filterProductController = require("../controller/product/filterProduct");
+const {
+  resetPasswordToken,
+  resetPassword,
+} = require("../controller/user/resetPassword");
 
 router.post("/signup", userSignUpController);
 router.post("/signin", userSignInController);
@@ -41,7 +45,13 @@ router.post("/category-product", getCategoryWiseProduct);
 router.post("/product-details", getProductDetails);
 router.get("/search", searchProduct);
 router.post("/filter-product", filterProductController);
-
+// ********************************************************************************************************
+//                                      Reset Password
+// ********************************************************************************************************
+// Route for genenating a reset password token
+router.post("/reset-password-token", resetPasswordToken);
+// Route for resetting a reset passwordafter verification
+router.post("/reset-password", resetPassword);
 //user add to cart
 router.post("/addtocart", authToken, addToCartController);
 router.get("/countAddToCartProduct", authToken, countAddToCartProduct);
